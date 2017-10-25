@@ -1,0 +1,44 @@
+body{
+    margin: auto auto;
+    padding: 0 0 50% 0;
+    background-image: url("../images/background.png")!important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    max-height: 640px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+}
+
+#score {
+    float: right;
+    padding-top: 3px;
+    padding-bottom: 5px;
+    padding-right: 2px;
+}
+
+.thumbnail {
+    border: 0;
+    background-color: transparent;
+    box-shadow: 0;
+    border-radius: 0;
+}
+
+.vertical-center {
+    min-height: 100%; /* Fallback for browsers do NOT suppozrt vh unit */
+    min-height: 100vh;
+    /* display: flex; */
+    padding-top: 70px;
+    align-items: center;
+}
+
+.fa {
+    padding: 20px;
+    font-size: 30px;
+    width: 30px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+}

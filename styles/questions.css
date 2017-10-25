@@ -1,0 +1,110 @@
+body {
+    margin: auto auto;
+    padding: 0 0 50% 0;
+    background-image: url("../images/back2.png")!important;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    max-height: 640px;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+   
+}
+
+/* .container {
+    padding-left: 10px !important;
+    Margin-left: 2px;
+    margin-bottom: 0px !important;
+    padding-bottom: 0px !important;
+    background-image: url("../images/man.png") !important;
+    background-repeat: no-repeat;
+    max-height: 640px;
+    background-size: cover;
+} */
+
+#score {
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    padding-right: 2px;
+}
+
+.vertical-center {
+    min-height: 100%;
+    /* Fallback for browsers do NOT suppozrt vh unit */
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+}
+
+.image {
+    position: relative;
+    width: 100%;
+    /* for IE 6 */
+}
+
+.img-responsive {
+    padding-bottom: 15px;
+}
+
+h1 {
+    position: absolute;
+    top: 200px;
+    /* left: 40px; */
+    /* width: 100%; */
+}
+
+h1 span {
+    /* position: absolute; */
+    /* bottom: 60px; */
+    font-family: 'museo_slab500';
+    /* font-size : 150%; */
+    color: #FFDF00;
+    padding: 0 20px;
+    text-align: center;
+    width: 100%;
+    line-height: 150%;
+}
+
+/* h2 { */
+    /* position: absolute; */
+    /* top: 200px; */
+    /* left: 40px; */
+    /* width: 100%; */
+/* } */
+
+h2 span {
+     position : absolute;
+     bottom : 60px;
+     font-family: 'museo_slab500';
+     /* font-size : 150%; */
+     color: #FFDF00;
+     padding : 0 20px;
+     text-align: center;
+     width : 100%;
+     line-height: 150%;
+}
+
+   input[type=radio] {
+       display: none;
+   }
+
+   input[type=radio]+label {
+       display: inline-block;
+       padding: 0 0 0 0px;
+       background: url("../images/ans_button.png") no-repeat;
+       height: 125px;
+       width: 125px;
+       background-size: 50%;
+   }
+
+   input[type=radio]:checked+label {
+       background: url("../images/glow_button.png") no-repeat;
+       height: 125px;
+       width: 125px;
+       display: inline-block;
+       background-size: 50%;
+   }
+   

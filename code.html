@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DW Bible game</title>
+</head>
+
+<body>
+    <progress value="0" max="10" id="progressBar"></progress>
+    <p id="question">question one place holder</p>
+    <form method="POST" onSubmit="return checkAnswer(this, pos);" action="">
+        
+        <input TYPE="RADIO" id="option1" value="A" name="cc">
+        <div id="option1show" > option 1 </div>
+
+        <input TYPE="RADIO" id="option2" value="B"  name="cc">
+        <div  id="option2show" > option 2 </div>
+
+        <input TYPE="RADIO" id="option3" value="C"  name="cc">
+        <div  id="option3show" > option 3 </div>
+
+        <input TYPE="SUBMIT" VALUE="Submit Answer">
+
+    </form>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+<script language="JavaScript" type="text/javascript">
+
+// this is to have an object that has properties....
+var DIWS=[];
+var DIW={Ques:"What is your name",OptionA:"Femi",OptionB:"Temi",OptionC:"Patience",CorrectAns:"Temi"}
+DIWS.push(DIW)
+var DIW={Ques:"How old are you",OptionA:"5",OptionB:"8",OptionC:"2",CorrectAns:"2"}
+DIWS.push(DIW)
+var DIW={Ques:"What is the name of your mum",OptionA:"Kemi",OptionB:"Yemi",OptionC:"Katience",CorrectAns:"Yemi"}
+DIWS.push(DIW)
+var DIW={Ques:"What is the name of your father",OptionA:"Jemi",OptionB:"Remi",OptionC:"Matience",CorrectAns:"Remi"}
+DIWS.push(DIW)
+var DIW={Ques:"What is the name of your sister",OptionA:"Demi",OptionB:"Pemi",OptionC:"Watience",CorrectAns:"Demi"}
+DIWS.push(DIW)
+var DIW={Ques:"What is the name of your brother",OptionA:"Lemi",OptionB:"Bemi",OptionC:"Satience",CorrectAns:"Bemi"}
+DIWS.push(DIW)
+
+// to get the random numbers on diws, but not implemented
+var uniqueRandoms = [];
+var numRandoms = 5;
+function makeUniqueRandom() {
+    // refill the array if needed
+    if (!uniqueRandoms.length) {
+        for (var i = 0; i < numRandoms; i++) {
+            uniqueRandoms.push(i);
+        }
+    }
+    var index = Math.floor(Math.random() * uniqueRandoms.length);
+    var val = uniqueRandoms[index];
+
+    // now remove that value from the array
+    uniqueRandoms.splice(index, 1);
+
+    return val;
+
+}
+
+
+
+ var array1=[]
+ for(var l=0; l< DIWS.length; l++) {
+   array1.push(l);
+ }
+// var lastNumber = 0;
+//  function randomNumber () {
+
+
+//   for(var l=0; l< DIWS.length; l++) {
+//     var getRandomNumber = Math.floor(Math.random() * DIWS.length);  
+//     if(getRandomNumber != lastNumber){
+     
+//         lastNumber = getRandomNumber;
+        
+//         array1.push(lastNumber);
+//     }else{
+//         randomNumber();
+//     }
+//   }
+// };
+// randomNumber(); 
+var timeleft = 10;
+
+var downloadTimer = setInterval(function(){
+  document.getElementById("progressBar").value = 10 - --timeleft;
+ // document.getElementById(MyEdit).innerHTML = document.getElementById("progressBar").value;
+ // $('.MyEdit').html(document.getElementById("progressBar").value);
+ // document.getElementById("MyEdit").innerHTML = document.getElementById("progressBar").value;​
+  if(timeleft <= 0){
+    pos = pos + 1;
+  renderNextQuestion(array1[pos]);
+    clearInterval(downloadTimer);
+
+  }
+
+},1000);
+
+
+var pos = 0;
+var questions = Array(3);
+questions[0] = ["How old was joseph when he died?", "34", "33", "55", "A" ];
+questions[1] = ["The Israelites were used to build two cites in Egypt, what are their names", "jon", "test", "amen", "B" ];
+questions[2] = ["He built an ark ro preserve the world", "yes and no ", "testing second", "testing third", "C" ];
+
+function renderNextQuestion(){
+  $("#question").text(DIWS[array1[pos]].Ques);
+    $("#option1show").text(DIWS[array1[pos]].OptionA);
+    $("#option2show").text(DIWS[array1[pos]].OptionB);
+    $("#option3show").text(DIWS[array1[pos]].OptionC);
+    // $("#question").text(questions[pos][0]);
+    // $("#option1show").text(questions[pos][1]);
+    // $("#option2show").text(questions[pos][2]);
+    // $("#option3show").text(questions[pos][3]);
+    var timeleft = 10;
+var downloadTimer = setInterval(function(){
+  document.getElementById("progressBar").value = 10 - --timeleft;
+
+  if(timeleft <= 0){
+    
+  renderNextQuestion(array1[pos]);
+  pos=pos+1;
+    clearInterval(downloadTimer);
+
+  }
+
+},1000);
+}
+
+
+// render first question from the array;
+renderNextQuestion(array1[pos]);
+
+
+function checkAnswer(quizForm){
+  var s = "?";
+  theAnswer = DIWS[array1[pos]].CorrectAns;
+
+  // go through the "current choices"  to find the selected choice. radio boxes pointing to choices
+  // must be named "cc"  change if necessary
+
+  for(var i = 0; i<quizForm.elements.length; i++){
+    if(("cc" == quizForm.elements[i].name) && (quizForm.elements[i].checked)){
+      s = quizForm.elements[i].value;
+    }
+  }
+
+  // no choice was selected
+  if("?" == s){
+    alert("Please make a selection.");
+    return false;
+  } 
+
+  console.log("answer" + " " + theAnswer);
+  console.log("answer checked" + " "+ s+ " question " + DIWS[array1[pos]].Ques);
+  if(s == theAnswer){
+    alert("'"+s+"' is correct!");
+  } else {
+    alert("'"+s+"' is incorrect.");
+  }
+
+  // load the next questions and options
+    pos = pos + 1;
+  renderNextQuestion(array1[pos]);
+  return false;
+}
+
+// function checkAnswer(quizForm){
+//   var s = "?";
+//   theAnswer = questions[pos][4];
+
+//   // go through the "current choices"  to find the selected choice. radio boxes pointing to choices
+//   // must be named "cc"  change if necessary
+
+//   for(var i = 0; i<quizForm.elements.length; i++){
+//     if(("cc" == quizForm.elements[i].name) && (quizForm.elements[i].checked)){
+//       s = quizForm.elements[i].value;
+//     }
+//   }
+
+//   // no choice was selected
+//   if("?" == s){
+//     alert("Please make a selection.");
+//     return false;
+//   } 
+
+//   console.log("answer" + " " + theAnswer);
+//   console.log("answer checked" + " "+ s+ " question " + questions[pos][0]);
+//   if(s == theAnswer){
+//     alert("'"+s+"' is correct!");
+//   } else {
+//     alert("'"+s+"' is incorrect.");
+//   }
+
+//   // load the next questions and options
+//     pos = pos + 1;
+//   renderNextQuestion(pos);
+//   return false;
+// }
+
+</script>
+</body>
+
+
+</HTML>
